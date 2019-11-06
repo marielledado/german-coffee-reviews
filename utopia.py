@@ -10,6 +10,7 @@ class UtopiaSpider(scrapy.Spider):
     def parse(self, response):
         self.log("I just visited: " + response.url)
         reviews = response.css('div.commenttext p:nth-child(1)::text').extract()
+        self.log(reviews)
         yield
         {
         "review":reviews
