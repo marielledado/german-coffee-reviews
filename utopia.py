@@ -11,7 +11,6 @@ class UtopiaSpider(scrapy.Spider):
         self.log("I just visited: " + response.url)
         reviews = response.css('div.commenttext p:nth-child(1)::text').extract()
         self.log(reviews)
-        yield
-        {
+        yield {
         "review":reviews
         }
