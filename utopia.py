@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 import scrapy
 
-
-
 class UtopiaSpider(scrapy.Spider):
     name = 'utopia'
     allowed_domains = ['utopia.de']
+    # scraping from list of best coffees
     start_urls = ['https://utopia.de/bestenlisten/bio-kaffee-fair-trade-kaffee/']
     def parse(self, response):
         list_of_urls = response.css("h3.product-listing__headline a::attr(href)").extract()
