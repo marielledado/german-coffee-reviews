@@ -15,11 +15,13 @@ class UtopiaSpider(scrapy.Spider):
         #extract brand name
         brand = response.css("h1::text").extract_first()
         #extract reviews
-        reviews = response.css('div.commenttext p:nth-child(1)::text').extract()
+        reviews = response.css('div.commenttext > p').extract()
 
         # self.log(reviews)
         
         for review in reviews:
+            # remove tags
+            review = review.replace('<br>\n', ' ').replace('<p>', '').replace('</p>', '')
             # counter for star-ratings based on number of i-class instances
             stars = 0
             for star in response.css("div.static-rating").extract():
